@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Lite Browser
+Exec=litebrowser
+Icon=cu.axel.litebrowser
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

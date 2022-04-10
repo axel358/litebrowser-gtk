@@ -1,0 +1,7 @@
+data/cu.axel.litebrowser.desktop.in
+data/cu.axel.litebrowser.appdata.xml.in
+data/cu.axel.litebrowser.gschema.xml
+src/window.ui
+src/main.py
+src/window.py
+

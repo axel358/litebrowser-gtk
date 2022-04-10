@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="LitebrowserWindow" parent="GtkApplicationWindow">
+    <property name="title" translatable="yes">Lite Browser</property>
+    <property name="default-width">800</property>
+    <property name="default-height">550</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header_bar">
+        <child type="start">
+          <object class="GtkButton">
+            <property name="icon-name">tab-new-symbolic</property>
+            <signal name="clicked" handler="new_tab"/>
+          </object>
+        </child>
+        <child type="start">
+          <object class="GtkBox">
+            <style>
+              <class name="linked"/>
+            </style>
+            <child>
+              <object class="GtkButton">
+                <property name="icon-name">go-previous-symbolic</property>
+                <signal name="clicked" handler="go_back"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="icon-name">go-next-symbolic</property>
+                <signal name="clicked" handler="go_forward"/>
+              </object>
+            </child>
+          </object>
+        </child>
+<child type="start">
+          <object class="GtkButton" id="load_button">
+            <property name="icon-name">gtk-refresh-symbolic</property>
+            <signal name="clicked" handler="reload"/>
+          </object>
+        </child>
+        <child type="title">
+          <object class="GtkEntry" id="url_entry">
+            <property name="hexpand">true</property>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkMenuButton">
+            <property name="icon-name">open-menu-symbolic</property>
+            <property name="menu-model">primary_menu</property>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkMenuButton">
+            <property name="icon-name">fire-symbolic</property>
+            <property name="popover">content_popover</property>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkButton" id="fav_button">
+            <property name="icon-name">bookmarks-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="main_box">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="AdwTabBar" id="tab_bar">
+            <property name="view">tab_view</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkOverlay">
+            <child type="overlay">
+              <object class="GtkProgressBar" id="load_progress_bar">
+                <property name="valign">start</property>
+                <style>
+                  <class name="osd"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="AdwTabView" id="tab_view">
+                <property name="vexpand">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+  <menu id="content_menu">
+    <section>
+      <item>
+        <attribute name="custom">content_box</attribute>
+      </item>
+    </section>
+  </menu>
+  <object class="GtkPopoverMenu" id="content_popover">
+    <property name="menu-model">content_menu</property>
+    <child type="content_box">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkBox">
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="hexpand">true</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Block JavaScript</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="js_switch">
+                <property name="margin-start">5</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Block Images</property>
+                <property name="hexpand">true</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="img_switch">
+                <property name="margin-start">5</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Save page</attribute>
+        <attribute name="action">win.save-page</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About Lite Browser</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
+

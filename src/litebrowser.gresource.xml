@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/cu/axel/litebrowser">
+    <file>window.ui</file>
+    <file>gtk/help-overlay.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="icons/scalable/actions/fire-symbolic.svg" >../data/icons/fire-symbolic.svg</file>
+  </gresource>
+</gresources>
